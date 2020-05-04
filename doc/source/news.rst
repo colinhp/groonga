@@ -7,6 +7,36 @@
 News
 ====
 
+.. _release-10-0-3:
+
+Release 10.0.3 - 2020-05-29
+---------------------------
+
+Improvements
+^^^^^^^^^^^^
+
+* Added following APIs
+
+  * ``grn_obj_is_weight_vector(grn_ctx *ctx, grn_obj *obj)``
+
+    * It returns as a ``bool`` whether the object is a weight vector.
+
+  * ``grn_obj_is_uvector(grn_ctx *ctx, grn_obj *obj)``
+
+    * It returns as a ``bool`` whether the object is a uvector.
+
+      * ``uvector`` is a vector that size of elements for vector are fixed.
+
+  * ``grn_obj_is_weight_uvector(grn_ctx *ctx, grn_obj *obj)``
+
+    * It returns as a ``bool`` whether the object is a wright uvector.
+
+Fixes
+^^^^^
+
+Thanks
+^^^^^^
+
 .. _release-10-0-2:
 
 Release 10.0.2 - 2020-04-29
