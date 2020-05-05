@@ -15,6 +15,33 @@ Release 10.0.3 - 2020-05-29
 Improvements
 ^^^^^^^^^^^^
 
+* Added support for float32 weight vector.
+
+  * We can store weight as ``float32`` instead of ``uint32``.
+  * We need to add ``WEIGHT_FLOAT32`` flag when execute ``column_create`` to use this feature.
+
+    .. code-block::
+
+       column_create Records tags COLUMN_VECTOR|WITH_WEIGHT|WEIGHT_FLOAT32 Tags
+
+  * However, ``WEIGHT_FLOAT32`` flag isn't available with ``COLUMN_INDEX`` flag for now.
+
+* Added support for casting type of key to the reference uvector.
+
+  * For example, Groonga casts ``kana1`` to ``[kana1]`` in the below example.
+
+    .. code-block::
+
+       table_create kana TABLE_PAT_KEY ShortText
+
+       table_create item_rurema TABLE_NO_KEY
+       column_create item_rurema kana COLUMN_VECTOR kana
+
+       load --table item_rurema
+       [
+         {"kana": "kana1"} # "kana1" -> ["kana1"]
+       ]
+
 * Added following APIs
 
   * ``grn_obj_is_weight_vector(grn_ctx *ctx, grn_obj *obj)``
@@ -30,6 +57,10 @@ Improvements
   * ``grn_obj_is_weight_uvector(grn_ctx *ctx, grn_obj *obj)``
 
     * It returns as a ``bool`` whether the object is a wright uvector.
+
+  * ``grn_type_id_size(grn_ctx *ctx, grn_id id)``
+
+    * It returns the size of Groonga data type as a ``size_t`` .
 
 Fixes
 ^^^^^
